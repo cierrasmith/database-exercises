@@ -20,3 +20,13 @@ SELECT emp_no FROM salaries ORDER BY salary DESC limit 5 OFFSET 45;
 # 8 = 40
 # 9 = 45 page 10
 
+SELECT CONCAT('Hello ', 'Codeup', '!') welcomeMessage;
+
+SELECT DAYOFYEAR('1990-01-07');
+
+SELECT UNIX_TIMESTAMP() currentTimeInUnix;
+
+SELECT CONCAT(e.first_name, ' ', e.last_name, '''s birthday is ', DAYOFMONTH(e.birth_date) , ',', MONTHNAME(e.birth_date)) PeopleBirthdays
+from employees.employees e
+limit 10
+
