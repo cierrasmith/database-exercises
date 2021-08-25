@@ -1,7 +1,7 @@
 USE employees;
 
 # Find all employees whose names start and end with 'E'. Use concat() to combine their first and last name together as a single column in your results.
-SELECT CONCAT (first_name, last_name)
+SELECT CONCAT (first_name, last_name) fullName
 FROM employees
 WHERE first_name like 'E%' AND first_name like '%E' AND last_name like 'E%' AND last_name like '%E';
 
@@ -27,7 +27,7 @@ WHERE year(hire_date) BETWEEN 1990 AND 1999
 ORDER BY hire_date DESC;
 
 # For your query of employees born on Christmas and hired in the 90s, use datediff() to find how many days they have been working at the company (Hint: You might also need to use now() or curdate()).
-SELECT first_name, last_name, datediff(now(), hire_date)
+SELECT first_name, last_name, datediff(now(), hire_date) daysBetweenHireDateAndNow
 FROM employees
 WHERE year(hire_date) BETWEEN 1990 AND 1999
   AND month(birth_date) = 12
