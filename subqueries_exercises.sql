@@ -7,7 +7,7 @@ FROM employees as e
 WHERE e.hire_date IN (
     SELECT e.hire_date
     FROM employees as e
-    WHERE e.emp_no = '101010'
+    WHERE e.emp_no = 101010
 );
 
 # Find all the titles held by all employees with the first name Aamod.
@@ -57,13 +57,20 @@ WHERE emp_no IN (
 ORDER BY dept_name;
 
 # Find the first and last name of the employee with the highest salary.
+# Sub Query Version walk-through w/ Sam
 SELECT first_name, last_name
 FROM employees as e
-WHERE emp_no IN (
-    SELECT emp_no
+WHERE e.emp_no IN (
+    SELECT s.emp_no
     FROM salaries as s
-    WHERE salary = MAX
+    WHERE salary IN (
+        SELECT MAX(s.salary)
+        FROM salaries s
+        )
     );
 
-SELECT MAX(s.salary)
-FROM salaries as s
+# Join method, ran quicker than the subquery
+SELECT e.first_name, e.last_name
+FROM employees as e
+JOIN salaries as s ON e.emp_no = s.emp_no
+ORDER BY s.salary desc limit 1;
